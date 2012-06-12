@@ -1,4 +1,5 @@
 //= require console.log
+//= require _libs/json2.js
 //= require _libs/jquery-1.7.2
 //= require _libs/underscore
 //= require _libs/backbone
