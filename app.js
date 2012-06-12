@@ -9,7 +9,7 @@ var   express = require('express')
     }
     , http = require('http')
     , gzippo = require('gzippo')
-    , connectAssets = require('connect-assets')({src: 'public'});
+    , connectAssets = require('connect-assets')({src: __dirname + '/public'});
 var app = express();
 
 app.configure(function(){
