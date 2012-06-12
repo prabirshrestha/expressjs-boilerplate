@@ -1,2 +1,3 @@
 ./.git/*
-./*.sublime-workspace
+./*.sublime-workspacebuilt
+builtAssets/*
