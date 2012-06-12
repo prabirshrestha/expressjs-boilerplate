@@ -10,8 +10,8 @@ var App = {
 		new App.Routers.TodoRouter();
 
 		if (!Backbone.history.started) {
-            Backbone.history.start();
-            Backbone.history.started = true;
-        }
+			Backbone.history.start();
+			Backbone.history.started = true;
+		}
 	}
 };
