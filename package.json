@@ -1,13 +1,14 @@
 {
-    "name": "application-name",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "node app"
-    },
-    "main": "app.js",
-    "dependencies": {
-        "express": "3.0.0beta2",
-        "ejs": "*"
-    }
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "main": "app.js",
+  "dependencies": {
+    "express": "3.0.0beta2",
+    "ejs": "*",
+    "connect-assets": "~2.2.1"
+  }
 }
