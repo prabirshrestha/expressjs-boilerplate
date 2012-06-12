@@ -8,6 +8,7 @@ var   express = require('express')
         index: require('./routes')
     }
     , http = require('http')
+    , gzippo = require('gzippo')
     , connectAssets = require('connect-assets')({src: 'public'});
 var app = express();
 
@@ -24,7 +25,9 @@ app.configure(function(){
         next();
     });
     app.use(app.router);
-    app.use(express.static(__dirname + '/public'));
+
+    // app.use(express.static(__dirname + '/public'));
+    app.use(gzippo.staticGzip(__dirname + '/public'));
 
     css.root = "stylesheets";
     js.root = "javascripts";
