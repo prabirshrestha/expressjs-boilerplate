@@ -15,4 +15,7 @@ node_modules/
 Thumbs.db
 .DS_Store
 
+# iis logs
+*.logs/*
+
 builtAssets/*
