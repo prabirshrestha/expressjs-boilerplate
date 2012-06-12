@@ -1,0 +1,9 @@
+//= require console.log
+//= require _libs/jquery-1.7.2
+//= require _libs/underscore
+//= require _libs/backbone
+//= require _libs/backbone-support/backbone-support
+//= require app.js
+//= require_tree models/
+//= require_tree collections/
+//= require_tree routers/

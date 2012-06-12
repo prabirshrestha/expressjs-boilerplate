@@ -7,7 +7,8 @@ var   express = require('express')
     , routes =  {
         index: require('./routes')
     }
-    , http = require('http');
+    , http = require('http')
+    , connectAssets = require('connect-assets')({src: 'public'});
 var app = express();
 
 app.configure(function(){
@@ -20,6 +21,10 @@ app.configure(function(){
     app.use(express.methodOverride());
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
+
+    css.root = "stylesheets";
+    js.root = "javascripts";
+    app.use(connectAssets);
 });
 
 app.configure('development', function(){
