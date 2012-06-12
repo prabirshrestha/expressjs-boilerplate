@@ -19,6 +19,10 @@ app.configure(function(){
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
+    app.use(function (req, res, next) {
+        res.removeHeader("X-Powered-By");
+        next();
+    });
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
 
