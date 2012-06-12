@@ -1,0 +1,16 @@
+# npm ignore
+npm-debug.log
+node_modules/
+
+# sublime text
+*.sublime-workspace
+
+# vim Ignore
+*.swp
+
+# kdiff3 Ignore
+*.orig
+
+# OS Ignores
+Thumbs.db
+.DS_Store
