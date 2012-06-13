@@ -3,7 +3,7 @@
 		{
 			"path": "./",
 			"folder_exclude_patterns": ["node_modules", "builtAssets", "*.js.logs", ".idea"],
-			"file_exclude_patterns": ["*.sublime-*", ".*", "run.bat", "npm-debug.log"]
+			"file_exclude_patterns": ["*.sublime-*", ".*", "npm-debug.log"]
 		}
 	],
 	"settings" : {

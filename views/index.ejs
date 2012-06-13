@@ -4,17 +4,17 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title><%= title %></title>
-		<%- css('style') %>
+
 	</head>
 	<body>
 		<h1><%= title %></h1>
 		<p>Welcome to <%= title %></p>
 
- 		<%- js('main') %>
-
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/javascripts/jquery.<%= assetsCacheHashes.js %>.js"><\/script>')</script>
+		<script src="/javascripts/app.<%= assetsCacheHashes.js %>.js"></script>
  		<script>
  			App.initialize({});
  		</script>
-
 	</body>
 </html>
