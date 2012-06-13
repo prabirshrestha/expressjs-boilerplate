@@ -2,12 +2,11 @@
 	"folders": [ 
 		{
 			"path": "./",
-			"folder_exclude_patterns": ["node_modules", "builtAssets"],
-			"file_exclude_patterns": ["*.sublime-*", ".*", "run.bat"]
+			"folder_exclude_patterns": ["node_modules", "builtAssets", "*.js.logs"],
+			"file_exclude_patterns": ["*.sublime-*", ".*", "run.bat", "npm-debug.log"]
 		}
 	],
 	"settings" : {
 		"tab_size": 4
 	}
 }
-
