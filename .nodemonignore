@@ -1,3 +1,4 @@
 ./.git/*
 ./*.sublime-workspace
+.idea/*
 builtAssets/*
