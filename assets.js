@@ -16,25 +16,33 @@ exports.snockets = function(file, path, index, isLast, callback) {
 };
 
 exports.stylus = function (file, path, index, isLast, callback) {
-	stylus.render(file, { filename: path }, function (err, css, js) {
-		if(css) {
-			callback(css);
-		} else {
-			console.log(err);
-			callback(err);
-		}
-	});
+	if(path.match(/\.styl$/)) {
+		stylus.render(file, { filename: path }, function (err, css, js) {
+			if(css) {
+				callback(css);
+			} else {
+				console.log(err);
+				callback(err);
+			}
+		});
+	} else {
+		callback(file);
+	}
 };
 
 exports.less = function (file, path, index, isLast, callback) {
-	less.render(file, function (err, css) {
-		if(css) {
-			callback(css);
-		}	else {
-			console.log(err);
-			return callback(err);
-		}
-	});
+	if(path.match(/\.less$/)) {
+		less.render(file, function (err, css) {
+			if(css) {
+				callback(css);
+			}	else {
+				console.log(err);
+				return callback(err);
+			}
+		});
+	} else {
+		callback(file);
+	}
 };
 
 assets.jquery = {
@@ -69,7 +77,7 @@ assets.css = {
 		'style.styl'
 	],
 	preManipulate:{
-		'^': [exports.stylus]
+		'^': [exports.stylus, exports.less]
 	},
 	debug: false
 };
