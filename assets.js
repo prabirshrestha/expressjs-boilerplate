@@ -1,5 +1,6 @@
 
-var Snockets = require('snockets'),
+var stylus = require('stylus'),
+	Snockets = require('snockets'),
 	snockets = new Snockets(),
 	assets = {};
 
@@ -8,6 +9,17 @@ exports.snockets = function(file, path, index, isLast, callback) {
 		if (js) {
 			callback(js);
 		} else {
+			callback(err);
+		}
+	});
+};
+
+exports.stylus = function (file, path, index, isLast, callback) {
+	stylus.render(file, { filename: path }, function (err, css, js) {
+		if(css) {
+			callback(css);
+		} else {
+			console.log(err);
 			callback(err);
 		}
 	});
@@ -42,8 +54,11 @@ assets.css = {
 	'path': './public/stylesheets/',
 	'dataType': 'css',
 	'files': [
-		'style.css'
+		'style.styl'
 	],
+	preManipulate:{
+		'^': [exports.stylus]
+	},
 	debug: false
 };
 
