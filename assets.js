@@ -14,7 +14,7 @@ exports.snockets = function(file, path, index, isLast, callback) {
 };
 
 assets.jquery = {
-	'route': /\/javascripts\/jquery.[a-z0-9]+.*\.js/,
+	'route': /\/jquery.[a-z0-9]+.*\.js/,
 	'path': './public/javascripts/',
 	'dataType': 'javascript',
 	'files': [
@@ -25,7 +25,7 @@ assets.jquery = {
 };
 
 assets.js = {
-	'route': /\/javascripts\/app.[a-z0-9]+.*\.js/,
+	'route': /\/app-[a-z0-9]+.*\.js/,
 	'path': './public/javascripts/',
 	'dataType': 'javascript',
 	'files': [
@@ -34,6 +34,16 @@ assets.js = {
 	preManipulate:{
 		'^': [exports.snockets]
 	},
+	debug: false
+};
+
+assets.css = {
+	'route': /\/style-[a-z0-9]+.*\.css/,
+	'path': './public/stylesheets/',
+	'dataType': 'css',
+	'files': [
+		'style.css'
+	],
 	debug: false
 };
 
