@@ -1,5 +1,6 @@
 
 var stylus = require('stylus'),
+	less = require('less'),
 	Snockets = require('snockets'),
 	snockets = new Snockets(),
 	assets = {};
@@ -21,6 +22,17 @@ exports.stylus = function (file, path, index, isLast, callback) {
 		} else {
 			console.log(err);
 			callback(err);
+		}
+	});
+};
+
+exports.less = function (file, path, index, isLast, callback) {
+	less.render(file, function (err, css) {
+		if(css) {
+			callback(css);
+		}	else {
+			console.log(err);
+			return callback(err);
 		}
 	});
 };
