@@ -9,7 +9,7 @@ var express = require('express'),
     assets = require('./assets');
 
 var app = express(),
-    assetsMiddleware = assetManager(assets.assets);
+    assetsMiddleware;
 
 var routes = {
     index: require('./routes')
@@ -21,6 +21,11 @@ app.configure('development', function () {
             assets.assets[asset].debug = true;
         }
     }
+});
+
+app.configure('production', function () {
+    assets.assets.jquery.postManipulate['^'].push(assets.uglifyJsOptimize);
+    assets.assets.js.postManipulate['^'].push(assets.uglifyJsOptimize);
 });
 
 app.configure(function () {
@@ -36,7 +41,8 @@ app.configure(function() {
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use(assetsMiddleware);
+
+    app.use(assetsMiddleware = assetManager(assets.assets));
 
     app.use(app.router);
 

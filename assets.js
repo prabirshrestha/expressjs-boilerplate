@@ -1,9 +1,17 @@
 
 var stylus = require('stylus'),
 	less = require('less'),
+	uglify = require('uglify-js'),
 	Snockets = require('snockets'),
 	snockets = new Snockets(),
 	assets = {};
+
+exports.uglifyJsOptimize = function (file, path, index, isLast, callback) {
+	var ast = uglify.parser.parse(file);
+	ast = uglify.uglify.ast_mangle(ast);
+	ast = uglify.uglify.ast_squeeze(ast);
+	callback(uglify.uglify.gen_code(ast));
+};
 
 exports.snockets = function(file, path, index, isLast, callback) {
 	snockets.getConcatenation(path, function(err, js) {
@@ -53,7 +61,9 @@ assets.jquery = {
 		'_libs/jquery-1.7.2.js'
 
 	],
-	debug: false
+	postManipulate: {
+		'^': []
+	}
 };
 
 assets.js = {
@@ -66,7 +76,9 @@ assets.js = {
 	preManipulate:{
 		'^': [exports.snockets]
 	},
-	debug: false
+	postManipulate: {
+		'^': []
+	}
 };
 
 assets.css = {
@@ -78,8 +90,7 @@ assets.css = {
 	],
 	preManipulate:{
 		'^': [exports.stylus, exports.less]
-	},
-	debug: false
+	}
 };
 
 exports.assets = assets;
