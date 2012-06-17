@@ -21,4 +21,5 @@ Thumbs.db
 # iis logs
 *.logs/*
 
+# connect-assets
 builtAssets/*
