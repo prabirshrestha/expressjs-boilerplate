@@ -22,9 +22,9 @@ app.configure(function() {
     // middleware
     app.use(express.favicon());
     app.use(express.logger('dev'));
+    require('./assets');
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-
     app.use(app.router);
 
     app.use(express.static(__dirname + '/public'));
