@@ -1,4 +1,5 @@
 .git/*
+.DS_Store
 *.sublime-workspace
 .idea/*
 builtAssets/*
