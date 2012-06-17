@@ -22,15 +22,16 @@ app.configure(function() {
     // middleware
     app.use(express.favicon());
     app.use(express.logger('dev'));
-    app.use(require('./assets')());
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
 
-    var h5bp = require('./h5bp');
+     var h5bp = require('./h5bp');
     app.use(h5bp.ieEdgeChromeFrameHeader());
     app.use(h5bp.protectDotfiles());
     app.use(h5bp.blockBackupFiles());
     app.use(h5bp.removePoweredBy());
+
+    app.use(require('./assets')());
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
 
     app.use(app.router);
 
