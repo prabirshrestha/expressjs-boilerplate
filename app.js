@@ -4,30 +4,13 @@
  */
 
 var express = require('express'),
-    http = require('http'),
-    assetManager = require('connect-assetmanager'),
-    assets = require('./assets');
+    http = require('http');
 
-var app = express(),
-    assetsMiddleware;
+var app = express();
 
 var routes = {
     index: require('./routes')
 };
-
-app.configure('development', function () {
-    for(var asset in assets.assets) {
-        if(asset !== 'forEach' && !asset.debug){
-            assets.assets[asset].debug = true;
-        }
-    }
-});
-
-app.configure('production', function () {
-    assets.assets.jquery.postManipulate['^'].push(assets.uglifyJsOptimize);
-    assets.assets.js.postManipulate['^'].push(assets.uglifyJsOptimize);
-});
-
 app.configure(function () {
     // settings
     app.set('port', process.env.PORT || 3000);
@@ -42,8 +25,6 @@ app.configure(function() {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
 
-    app.use(assetsMiddleware = assetManager(assets.assets));
-
     app.use(app.router);
 
     app.use(express.static(__dirname + '/public'));
@@ -51,11 +32,6 @@ app.configure(function() {
 
 app.configure('development', function(){
     app.use(express.errorHandler());
-});
-
-app.locals.use(function (req, res, next) {
-   res.locals.assetsCacheHashes = assetsMiddleware.cacheHashes;
-   next();
 });
 
 app.get('/', routes.index.index);
