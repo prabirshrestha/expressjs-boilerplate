@@ -17,7 +17,12 @@ App = {
 		// initilize common libs so we don't need to keep calling requries everytime
 		this._initializeLibs();
 
+		requires('views/app');
+		App.view = new App.Views.App({el: $('#app')});
+		App.view.render();
+
 		requires('routers/app'); new App.Routers.App();
+
 
 		if (!Backbone.history.started) {
 			Backbone.history.start();

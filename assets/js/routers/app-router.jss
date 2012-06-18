@@ -5,7 +5,6 @@ App.Routers.App = Support.SwappingRouter.extend({
 	},
 
 	index: function  () {
-		
 	}
 
 });
