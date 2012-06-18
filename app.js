@@ -33,6 +33,8 @@ app.configure(function() {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
 
+    app.use(require('gzippo').compress());
+
     app.use(app.router);
 
     app.use(express.static(__dirname + '/public'));
