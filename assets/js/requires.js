@@ -3,41 +3,41 @@ window.JST || (window.JST = {});
 
 window.requires = (function () {
 
-  var loaded = {};
-  
-  return function (name) {
-    var loadedModule = loaded[name], module;
+    var loaded = {};
 
-    if(loadedModule) {
-      return;
-    }
+    return function (name) {
+        var loadedModule = loaded[name], module;
 
-    module = JSS[name];
-    if(!module) {
-      throw new Error("Couldn't find module: " + name);
-    }
+        if(loadedModule) {
+            return;
+        }
 
-    if(typeof(module) === 'string') {
-      // We use execScript on Internet Explorer
-      // We use an anonymous function so that context is window
-      // rather than jQuery in Firefox
-      try{
-        (window.execScript || function(data) {
-          window["eval"].call( window, data);
-        })(module + ';\n//@ sourceURL=JSS['+ name +']\n');
-      } catch(e) {
-        console.log(e.stack);
-        throw e;
-      }
-    }
-    else {
-      module();
-    }
+        module = JSS[name];
+        if(!module) {
+            throw new Error("Couldn't find module: " + name);
+        }
 
-    delete JSS[name];
-    loaded[name] = true;
-    
-    return;
-  };
+        if(typeof(module) === 'string') {
+            // We use execScript on Internet Explorer
+            // We use an anonymous function so that context is window
+            // rather than jQuery in Firefox
+            try{
+            (window.execScript || function(data) {
+                window["eval"].call( window, data);
+            })(module + ';\n//@ sourceURL=JSS['+ name +']\n');
+            } catch(e) {
+                console.log(e.stack);
+                throw e;
+            }
+        }
+        else {
+            module();
+        }
+
+        delete JSS[name];
+        loaded[name] = true;
+
+        return;
+    };
 
 })();
