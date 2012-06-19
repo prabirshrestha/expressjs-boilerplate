@@ -1,11 +1,12 @@
-window.JSS || (window.JSS = {});
-window.JST || (window.JST = {});
 
-window.requires = (function () {
+
+(function (window) {
+    window.JSS || (window.JSS = {});
+    window.JST || (window.JST = {});
 
     var loaded = {};
 
-    return function (name) {
+    window.requires = function (name) {
         var loadedModule = loaded[name], module;
 
         if(loadedModule) {
@@ -22,9 +23,9 @@ window.requires = (function () {
             // We use an anonymous function so that context is window
             // rather than jQuery in Firefox
             try{
-            (window.execScript || function(data) {
-                window["eval"].call( window, data);
-            })(module + ';\n//@ sourceURL=JSS['+ name +']\n');
+                (window.execScript || function(data) {
+                    window["eval"].call( window, data);
+                })(module + ';\n//@ sourceURL=JSS['+ name +']\n');
             } catch(e) {
                 console.log(e.stack);
                 throw e;
@@ -40,4 +41,4 @@ window.requires = (function () {
         return;
     };
 
-})();
+})(window);
