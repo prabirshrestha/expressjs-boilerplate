@@ -14,7 +14,7 @@ var minifyJs = function(js) {
 assets.jsCompilers.jss = {
     match: /\.jss$/,
     compileSync: function (sourcePath, source) {
-        var key = sourcePath.substring((__dirname + '/assets/').length);
+        var key = sourcePath.replace(/\\/g,'/').substring((__dirname + '/assets/').length);
 
         if(key.lastIndexOf('js/_libs/') === 0) {
             key = key.substring('js/_libs/'.length);
@@ -48,7 +48,7 @@ assets.jsCompilers.jss = {
 assets.jsCompilers.htm = assets.jsCompilers.html = {
     match: /\.(html|htm)$/,
     compileSync: function (sourcePath, source) {
-        var key = sourcePath.substring((__dirname + '/assets/').length);
+        var key = sourcePath.replace(/\\/g,'/').substring((__dirname + '/assets/').length);
         if(key.lastIndexOf('templates/', 0) === 0) {
             key = key.substring('templates/'.length);
         }
