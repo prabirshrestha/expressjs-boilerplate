@@ -11,6 +11,7 @@ var app = express();
 var routes = {
     index: require('./routes')
 };
+
 app.configure(function () {
     // settings
     app.set('port', process.env.PORT || 3000);
