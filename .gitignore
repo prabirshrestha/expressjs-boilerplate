@@ -19,7 +19,7 @@ Thumbs.db
 .DS_Store
 
 # iis logs
-*.logs/*
+iisnode/
 
 # connect-assets
 builtAssets/*
