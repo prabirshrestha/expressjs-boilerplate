@@ -1,16 +1,7 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express'),
     http = require('http');
 
 var app = express();
-
-var routes = {
-    index: require('./routes')
-};
 
 app.configure(function () {
     // settings
@@ -45,7 +36,11 @@ app.configure('development', function() {
     app.use(express.errorHandler());
 });
 
-app.get('/', routes.index.index);
+var routes = {
+    home: require('./routes/home')
+};
+
+app.get('/', routes.home.index);
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log("Express server listening on port %d in %s mode", app.get('port'), app.settings.env);
