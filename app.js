@@ -23,6 +23,7 @@ app.configure(function () {
     app.use(h5bp.removePoweredBy());
 
     app.use(require('./assets')());
+    app.use(express.query());
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     app.use(express.methodOverride());
