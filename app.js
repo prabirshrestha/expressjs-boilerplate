@@ -1,5 +1,6 @@
 var express = require('express'),
-    http = require('http');
+    http = require('http'),
+    sync = require('synchronize');
 
 var app = express();
 
