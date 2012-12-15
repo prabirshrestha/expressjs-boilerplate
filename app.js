@@ -29,6 +29,8 @@ app.configure(function database() {
 
 app.configure(function () {
     // middleware
+    app.use(express.static(__dirname + '/public'));
+    
     app.use(express.favicon());
     app.use(express.logger('dev'));
 
@@ -48,7 +50,7 @@ app.configure(function () {
 
     app.use(app.router);
 
-    app.use(express.static(__dirname + '/public'));
+    
 });
 
 app.configure('development', function() {
