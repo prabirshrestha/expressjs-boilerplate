@@ -1,5 +1,7 @@
 .git/*
 .DS_Store
+Thumbs.db
 *.sublime-workspace
 .idea/*
-builtAssets/*
+/builtAssets/*
+/public/*
