@@ -55,11 +55,12 @@ app.configure('development', function() {
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
-var routes = {
-    home: require('./routes/home')
-};
-
-app.get('/', routes.home.index);
+// bootstrap our routes
+var routePath = __dirname + '/routes/';
+var routeFiles = fs.readdirSync(routePath);
+routeFiles.forEach(function(file) {
+    require(routePath + file)(app);
+});
 
 app.all('*', function (req, res) {
    res.status(404);
@@ -67,5 +68,5 @@ app.all('*', function (req, res) {
 });
 
 http.createServer(app).listen(app.get('port'), function() {
-    console.log("Express server listening on port %d in %s mode", app.get('port'), app.settings.env);
+    console.log("web server listening on port %d in %s mode", app.get('port'), app.settings.env);
 });
