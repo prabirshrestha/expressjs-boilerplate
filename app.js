@@ -1,6 +1,8 @@
-var express = require('express'),
-    http = require('http'),
-    Step = require('step');
+var express = require('express');
+var http = require('http');
+var fs = require('fs');
+var mongoose = require('mongoose');
+var Step = require('step');
 
 var app = express();
 
@@ -9,6 +11,19 @@ app.configure(function () {
     app.set('port', process.env.PORT || 3000);
     app.set('views', __dirname + '/views');
     app.set('view engine', 'ejs');
+});
+
+app.configure(function database() {
+    mongoose.connect('mongodb://username:parssword@localhost:27017/db');
+    mongoose.connection.on('error', function (err) {
+        console.log(err);
+    });
+    // import schemas
+    var modelsPath = __dirname + '/schemas'
+    modelFiles = fs.readdirSync(modelsPath)
+        modelFiles.forEach(function (file) {
+        require(modelsPath + '/' + file);
+    });
 });
 
 app.configure(function () {
