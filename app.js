@@ -2,6 +2,7 @@ var express = require('express');
 var h5bp = require('h5bp');
 var http = require('http');
 var fs = require('fs');
+var path = require('path');
 var mongoose = require('mongoose');
 var Step = require('step');
 
@@ -40,7 +41,7 @@ app.configure(function () {
     app.use(h5bp.blockBackupFiles());
     app.use(h5bp.removePoweredBy());
 
-    app.use(require('./assets')());
+    app.use(require('./lib/assets')(path.join(__dirname, 'assets/'))());
     app.use(express.query());
     app.use(express.bodyParser());
     app.use(express.cookieParser());
@@ -49,7 +50,6 @@ app.configure(function () {
     app.use(require('gzippo').compress());
 
     app.use(app.router);
-
     
 });
 
