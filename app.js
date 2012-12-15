@@ -1,4 +1,5 @@
 var express = require('express');
+var h5bp = require('h5bp');
 var http = require('http');
 var fs = require('fs');
 var mongoose = require('mongoose');
@@ -31,7 +32,6 @@ app.configure(function () {
     app.use(express.favicon());
     app.use(express.logger('dev'));
 
-    var h5bp = require('./h5bp');
     app.use(h5bp.ieEdgeChromeFrameHeader());
     app.use(h5bp.suppressWww(true));
     app.use(h5bp.protectDotfiles());
